@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Productos</h1>
+</div>
+    <div class="tarjetas">
+        {{#each products.docs}}
+            <div class="card-body">
+                <img src={{thumbnail}} class="card-img-top" alt={{description}}>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Id: {{id}}</li>
+                        <li class="list-group-item">Title: {{title}}</li>
+                        <li class="list-group-item">Descripción: {{description}}</li>
+                        <li class="list-group-item">Price: {{price}}</li>
+                        <li class="list-group-item">Categoría: {{category}}</li>
+                    </ul>
+                </div>
+                {{#if ../data.cartid}}
+                <form method="post" action="api/carts/{{../data.cartid}}/product/{{id}}">
+                <button class="btn btn-outline-dark">Agregar al carrito</button>
+                </form>
+                {{else}}
+                <form method="post" action="api/carts/sincarrito">
+                <button class="btn btn-outline-dark">Agregar al carrito</button>
+                </form>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+    <div>
+        <form method="post" action="/api/session/logout">
+        <button type="submit" class="btn btn-outline-dark">Cerrar Sesión</button>
+        </form>
+    </div>
+<div>
+{{#if products.hasPrevPage}}
+    <a href="/products?page={{products.prevPage}}">Atras</a>
+{{/if}}
+<span>Página {{products.page}} de {{products.totalPages}} </span>
+{{#if products.hasNextPage}}
+    <a href="/products?page={{products.nextPage}}">Siguiente</a>
+{{/if}}
+</div>

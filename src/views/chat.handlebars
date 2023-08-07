@@ -1,0 +1,13 @@
+<div>
+    <h1>Chat de Second Chance</h1>
+    <input id="input-chat"/>
+    <p id="mensajes-chat">
+        {{#each messages}}
+            <b>{{this.username}}:</b>{{this.messages}}<br>
+        {{/each}}
+    </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

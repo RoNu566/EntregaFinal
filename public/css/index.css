@@ -1,0 +1,101 @@
+
+.form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+ .navBar{
+    align-content: flex-end;
+    margin-left: 1vw;
+    margin-top: 2vh;
+ }
+ .header{
+    margin-left: 1vw;
+    margin-top: 2vh;
+ }
+ .titulos{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+ }
+ h1{
+    font-family: "Splash", scursive;
+    font-weight: 500;
+    transition: 300ms;
+ }
+
+ /* // Productos // */
+ .tarjetas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin: 15px;
+    padding: 0.7em;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+   
+ }
+
+ .container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+ }
+
+ .card_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+ .card-body:hover {
+  transform: translateY(-10px);
+  box-shadow: 1.25px 1.25px 10px rgba(0, 0, 0, 0.5);
+}
+
+ .card-body img{
+    width: 150px;
+    height: 150px;
+ }
+ /* .img{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+ } */
+ #section{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+ }
+
+/* footer */
+ #footer {
+   margin: 1rem;
+   border-radius: 1rem;
+   background: linear-gradient(rgba(153, 234, 163, 0.603), rgba(217, 252, 186, 0.568));
+   box-shadow: 1rem 1rem 2rem 1rem rgb(116, 110, 110);
+   margin-bottom: 1rem;
+ }
+ #footer div {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   font-size: 3rem;
+   align-content: center;
+   margin-bottom: 1rem;
+ }

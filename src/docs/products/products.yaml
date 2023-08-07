@@ -1,0 +1,195 @@
+paths:
+  /api/products:
+    get:
+      summary: Ruta para optener los productos
+      tags:
+        - Products
+      responses:
+        "201":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Product"
+        "404":
+          description: No se pudo obtener la lista de productos
+    post:
+      sumary: Ruta para que un admin o user Premium generern un producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#components/requestBodies/updateProduct"
+      responses:
+        "201":
+          description: Producto agregado!!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Product"
+        "404":
+          description: No se pudo agregar el producto
+
+  /api/products/{pid}:
+    get:
+      summary: Ruta para obtener el producto con id = pid
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: True
+          description: pid es el id del producto buscado
+          schema:
+            $type: string
+      responses:
+          "201":
+            description: Exito!
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#components/schemas/Product"
+          "404":
+            description: Producto no encontrado
+    put:
+      sumary: Ruta para actualizar un producto.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: True
+          description: pid es el id del producto a actualizar
+          schema:
+            $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#components/requestBodies/updateProduct"
+      responses:
+        "201":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Product"
+        "404":
+          description: No se pudo actualizar el producto
+    delete:
+      summary: Ruta para eliminar un producto - Solo Administrador - 
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: True
+          description: pid es el ID del prodcuto a eliminar
+          schema:
+            $type: string
+      responses:
+          "201":
+            description: Se ha eliminado el producto
+          "404":
+            description: No tienes autorización para eliminar el producto
+
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogenerado del producto
+        title: 
+          type: String 
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción elaborada del producto
+        price:
+          type: Number
+          description: Valor del producto
+        thumbnail: 
+          type: Array
+          description: Imagen del producto         
+        code:
+          type: Number
+          description: Código númerico del producto
+        stock:
+          type: Number
+          description: Cantidad de unidades disponibles del producto
+        category:
+          type: String
+          description: Tipo de producto
+        status: 
+          type: Boolean
+          description: Verdadero o Falso.
+        owner:
+          type: ObjectId,
+          description: Creador del producto.
+      example:
+        _id: ObjectId("6423c30154d00a799386f309")
+        title: Bufanda
+        description: Bufanda invierno
+        price": 200
+        thumbnail: [https://URLdeLaImagen]
+        code: 2
+        stock: 20
+        category: ropa
+        status: true
+        owner: ObjectId("6494aa0eb29077fa3836d325")
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title: 
+          type: String 
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción elaborada del producto
+        price:
+          type: Number
+          description: Valor del producto
+        thumbnail: 
+          type: Array
+          description: Imagen del producto         
+        code:
+          type: Number
+          description: Código númerico del producto
+        stock:
+          type: Number
+          description: Cantidad de unidades disponibles del producto
+        category:
+          type: String
+          description: Tipo de producto
+        status: 
+          type: Boolean
+          description: Verdadero o Falso.
+      example:
+        title: Bufanda
+        description: Bufanda invierno
+        price": 200
+        thumbnail: https://URLdeLaImagen
+        code: 2
+        stock: 20
+        category: ropa
+        status: true

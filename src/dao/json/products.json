@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1",
+        "title": "Remera",
+        "description": "Remera manga corta",
+        "price": 5000,
+        "thumbnail": "img",
+        "code": 1,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    },
+    {
+        "id": "2",
+        "title": "Bufanda",
+        "description": "Bufanda invierno",
+        "price": 200,
+        "thumbnail": "img",
+        "code": 2,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    },
+    {
+        "id": "3",
+        "title": "Gorro",
+        "description": "Gorro de lana",
+        "price": 300,
+        "thumbnail": "img",
+        "code": 3,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    },
+    {
+        "id": "4",
+        "title": "Medias",
+        "description": "Medias deportivas",
+        "price": 400,
+        "thumbnail": "img",
+        "code": 4,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    },
+    {
+        "id": "5",
+        "title": "Pantalones",
+        "description": "Pantalon chupin",
+        "price": 200,
+        "thumbnail": "img",
+        "code": 5,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    },
+    {
+        "id": "6",
+        "title": "Campera",
+        "description": "Campera impermeable sky",
+        "price": 1000,
+        "thumbnail": "img",
+        "code": 6,
+        "stock": 20,
+        "category": "ropa",
+        "status": true
+    }
+]

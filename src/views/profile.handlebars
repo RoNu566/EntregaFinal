@@ -1,0 +1,9 @@
+<div class="container-mb">
+<h1>Bienvenido a tu Perfil</h1>
+<h2>Estas logeado como: {{data.user}} y tu perfil es: {{data.rol}}</h2>
+</div>
+    <div>
+        <form method="post" action="/api/session/logout">
+        <button type="submit" class="btn btn-outline-dark">Log out!</button>
+        </form>
+    </div>
