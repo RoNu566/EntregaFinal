@@ -3,7 +3,6 @@ import cartModel from "../models/cart.models.js";
 
 class ProductManager {
 
-
   constructor() {
     console.log("Working on DB")
   }
@@ -57,6 +56,31 @@ class ProductManager {
     } catch (Error) {
       console.log("No se ha podido eliminar el producto")
       throw new Error;
+    }
+  }
+
+  async reduceStock(id, stock) {
+    try {
+      const productToUpdate = await productModel.findById(id)
+      if (productToUpdate.stock < stock) {
+        return ("El stock del producto es menor que la cantidad solicitada ")
+      } else {
+        const newStock = Number(productToUpdate.stock) - Number(stock)
+        const newinfo = {
+          title: productToUpdate.title,
+          description: productToUpdate.description,
+          price: productToUpdate.price,
+          thumbnail: productToUpdate.thumbnail,
+          code: productToUpdate.code,
+          stock: newStock,
+          category: productToUpdate.category,
+          status: productToUpdate.status,
+          owner: productToUpdate.owner,
+        }
+        this.updateProduct(id, newinfo)
+      }
+    } catch (error) {
+      throw new Error
     }
   }
 }
