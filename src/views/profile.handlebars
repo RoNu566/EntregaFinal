@@ -1,9 +1,14 @@
-<div class="container-mb">
-<h1>Bienvenido a tu Perfil</h1>
-<h2>Estas logeado como: {{data.user}} y tu perfil es: {{data.rol}}</h2>
+<div class="container">
+<h1>Accediste a tu cuenta</h1>
 </div>
-    <div>
+<div class="container">
+<h2>Bienvenido/a: {{data.user}}. Tu tipo de perfil es: {{data.rol}}</h2>
+</div>
+ <div class="container-md">
+        <img src="./img/th.jpg" class="img-fluid" alt="imagen de ropa">
+        </div><br>
+    <div class="container">
         <form method="post" action="/api/session/logout">
-        <button type="submit" class="btn btn-outline-dark">Log out!</button>
+        <button type="submit" class="btn btn-outline-dark">Cerrar sesion</button>
         </form>
     </div>

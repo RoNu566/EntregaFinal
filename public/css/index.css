@@ -26,6 +26,15 @@
     transition: 300ms;
  }
 
+ /*// Main // */
+
+ .main_title{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
  /* // Productos // */
  .tarjetas {
     display: flex;
@@ -70,12 +79,7 @@
     width: 150px;
     height: 150px;
  }
- /* .img{
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   align-items: center;
- } */
+ 
  #section{
    display: flex;
    flex-direction: row;
@@ -84,7 +88,7 @@
  }
 
 /* footer */
- #footer {
+ /* #footer {
    margin: 1rem;
    border-radius: 1rem;
    background: linear-gradient(rgba(153, 234, 163, 0.603), rgba(217, 252, 186, 0.568));
@@ -97,5 +101,12 @@
    justify-content: space-evenly;
    font-size: 3rem;
    align-content: center;
-   margin-bottom: 1rem;
+   margin-bottom: 1rem; */
+ /* } */
+ #fondo{
+  background-image: url("../img/fondomb.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
  }

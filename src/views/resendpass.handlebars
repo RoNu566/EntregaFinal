@@ -1,8 +1,14 @@
+<body id="fondo">
+<div class="container">
 <h1>Formulario para recuperar contraseña</h1>
+</div>
+<div class="container">
 <p>Completa tu correo electronico a continuación y te enviaremos un email con las instrucciones para restablecer la contraseña</p>
-<div>
+</div>
+<div class="container">
     <form method="post" action="/api/session/resendpass">
     <input type="text" placeholder="email" name="email"/><br>
-    <button type="submit">Enviar correo</button><br>
+    <button type="submit" class="btn btn-outline-dark">Enviar correo</button><br>
     </form>
 </div>
+</body>
