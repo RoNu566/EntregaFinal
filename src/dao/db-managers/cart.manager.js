@@ -25,7 +25,7 @@ class CartManager {
     }
   }
   async checkCart(id) {
-    const cart = await cartModel.findById(id);
+    const cart = await cartModel.findById(id).populate("products.product").lean();
     if (!cart) {
       console.log("No se encontro el carrito")
     } else {
@@ -62,20 +62,21 @@ class CartManager {
   async deletProdfromCart(cid, pid) {
     try {
       const cart = await cartModel.findById(cid);
-      const prod = cart.products.find(p => p.id === pid)
+      const prod = cart.products.find(p => p.product._id == pid)
 
       if (!prod) {
         throw new Error("El producto buscado no se encuentra en ningún carrito")
-      } else if (prod.quantity > 1) {
-        prod.quantity -= 1;
+      }
+      if (prod.quantity > 1) {
+        prod.quantity = prod.quantity - 1;
         cart.save();
-      } else {
-        let newCartProd = cart.products.find(p => p.id !== pid);
-        cart.products = newCartProd;
-        cart.savr();
+      } else if (prod.quantity <= 1) {
+        const index = cart.products.findIndex(prod => prod.product._id.toString() == pid)
+        cart.products.splice(index, 1)
+        cart.save();
       }
     } catch (Error) {
-      return (Error);
+      throw new Error("no se pudo eliminar el producto");
     }
   }
 };

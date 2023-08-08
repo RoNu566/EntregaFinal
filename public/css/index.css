@@ -35,6 +35,75 @@
    align-items: center;
  }
 
+ /*// Profile // */
+
+ #profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 25px 0px;
+ }
+
+ .banner{
+  width: auto;
+  height: auto;
+  border-radius: 1rem;
+ }
+
+ .cart_products{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+
+
+.cart_list{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 15px 0px;
+}
+
+ .cartcard_product{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  border-radius: 0.5rem;
+  border-color: rgb(169, 169, 169);
+  border: 1px solid;
+ }
+
+ .cartcard_product_img img{
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+ }
+ .cartcard_product_text{
+  size: 0.8rem;
+  padding: 2px 5px 2px 5px;
+ }
+
+ .cartcard_product button{
+  margin: 2px 0px 10px 0px;
+ }
+
+ .purchase_buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+ }
+
+ .profile_button{
+  margin: 0px 5px 0px 5px
+ }
+
  /* // Productos // */
  .tarjetas {
     display: flex;
@@ -110,3 +179,4 @@
   background-position: center;
   background-size: cover;
  }
+

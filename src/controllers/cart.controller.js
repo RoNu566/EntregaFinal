@@ -4,7 +4,7 @@ import TicketManager from "../dao/db-managers/ticket.manager.js";
 import { CartNotFoundErrorFunction } from "../services/errorFunction.js";
 import { Logger2 } from "../Logger/logger.js";
 
-const cartManager = new CartManager();
+export const cartManager = new CartManager();
 const ticketManager = new TicketManager();
 const logger = Logger2()
 

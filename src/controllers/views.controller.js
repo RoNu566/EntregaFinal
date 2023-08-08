@@ -2,6 +2,7 @@ import { manager } from "../controllers/products.controller.js"
 import ChatManager from "../dao/db-managers/chat.manager.js";
 import productModel from "../dao/models/products.models.js";
 import { Logger2 } from "../Logger/logger.js";
+import { cartManager } from "./cart.controller.js";
 
 const chatManager = new ChatManager;
 const logger = Logger2()
@@ -41,7 +42,8 @@ export const LoginViewController = async (req, res) => {
 
 export const ProfileViewController = async (req, res) => {
     const data = req.session;
-    res.render("profile", { data })
+    const cartProduct = await cartManager.checkCart(data.cartid)
+    res.render("profile", { data, cartProduct, section: "profile" })
 }
 
 export const SignInViewController = async (req, res) => {

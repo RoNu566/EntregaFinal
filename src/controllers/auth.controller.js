@@ -55,9 +55,9 @@ export const LoginController = async (req, res) => {
             req.session.email = user.email;
             req.session.rol = user.rol;
             req.session.cartid = user.cart[0]._id.toString();
-
             user.last_connection = new Date() //actualizo last conection
             const userUpdated = await usersModel.findByIdAndUpdate(user._id, user)//se guarda en base de datos
+            req.session.last_connection = user.last_connection
             console.log("usuario registrado")
             console.log("user data", user)
             res.redirect("/products")

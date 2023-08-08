@@ -25,6 +25,9 @@ cartRouter.post("/sincarrito", LoginViewController);//me envia al login
 //Ruta para eliminar producto del carrito//
 cartRouter.delete("/:cid/product/:pid", DeleteProductFromCartController);
 
+//Ruta para eliminar producto del carrito mediante form//
+cartRouter.post("/:cid/delete/:pid", DeleteProductFromCartController);
+
 //Ruta para eliminar Carritos//
 cartRouter.delete("/:cid", DeleteCartController)
 

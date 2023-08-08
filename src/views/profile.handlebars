@@ -5,10 +5,54 @@
 <h2>Bienvenido/a: {{data.user}}. Tu tipo de perfil es: {{data.rol}}</h2>
 </div>
  <div class="container-md">
-        <img src="./img/th.jpg" class="img-fluid" alt="imagen de ropa">
-        </div><br>
-    <div class="container">
-        <form method="post" action="/api/session/logout">
-        <button type="submit" class="btn btn-outline-dark">Cerrar sesion</button>
-        </form>
+        <img src="./img/secondchancebanner.jpg" class="img-fluid banner" alt="imagen de ropa">
+</div><br>
+<div class="cart_products">
+    <h1>💕Aqui esta tu carrito 💕</h1>
+    <p>Listado de productos agregados</p>
+    <div class="cart_list">
+        {{#if cartProduct._id}}
+            {{#if cartProduct.products}}
+                {{#each cartProduct.products}}
+                <div class="cartcard_product">
+                    <div class="cartcard_product_img">
+                        <img src={{this.product.thumbnail}} alt={{this.product.description}}>
+                    </div>
+                    <div class = "cartcard_product_text">
+                        <p>Product Id: {{this.product._id}}</p>
+                        <p>Precio Unitario: {{this.product.price}}</p>
+                        <p>Cantidad en el carrito: {{this.quantity}}</p>
+                    </div>
+                    <div class = "cartcard_product_remove">
+                        <form method="post" action="/api/carts/{{../data.cartid}}/delete/{{this.product._id}}">
+                        <button>❌</button>
+                        </form>
+                    </div>
+                </div>
+                {{/each}}
+        </div>
+            <div class="purchase_buttons">
+                <div class = "confirm_purchase">
+                        <form method="post" action="/api/carts/{{data.cartid}}/purchase">
+                        <button id="confirm_purchase" class="btn btn-outline-dark profile_button">Confirmar Compra</button>
+                        </form>
+                </div>
+                <div class = "clear_cart">
+                        <form method="post" action="/api/carts/{{data.cartid}}/clearcart">
+                        <button id="empty_cart" class="btn btn-outline-dark profile_button">Vaciar carrito</button>
+                        </form>
+                </div>
+            </div>
+        {{else}}
+            <p>Carrito vacío</p>
+        {{/if}}
+    {{else}}
+    <p>No hay detalles</p>
+    {{/if}}
     </div>
+</div>
+<div class="button">
+    <form method="post" action="/api/session/logout">
+        <button type="submit" class="btn btn-outline-dark">Cerrar sesion</button>
+    </form>
+</div>
