@@ -17,7 +17,7 @@
                 </div>
                 {{#if ../data.cartid}}
                 <form method="post" action="api/carts/{{../data.cartid}}/product/{{id}}">
-                <button class="btn btn-outline-dark">Agregar al carrito</button>
+                <button class="btn btn-outline-dark add_button">Agregar al carrito</button>
                 </form>
                 {{else}}
                 <form method="post" action="api/carts/sincarrito">
@@ -41,3 +41,8 @@
     <a href="/products?page={{products.nextPage}}">Siguiente</a>
 {{/if}}
 </div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+<script src="/js/SweetAlert.js"></script>

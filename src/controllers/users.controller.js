@@ -1,4 +1,5 @@
 import usersModel from "../dao/models/users.model.js";
+import { deleteUser, deleteEmail } from "../services/users.service.js";
 
 export const isPremium = async (req, res) => {
     try {
@@ -56,5 +57,35 @@ export const DocumentController = async (req, res) => {
     } catch {
         console.log(error.message)
         res.status(404).send("error al cargar los documentos")
+    }
+}
+
+export const getlistController = async (req, res) => {
+    try {
+        const users = await usersModel.find().lean()
+        let userList = users.map(p => { return `Nombre: ${p.name}, Apellido: ${p.last_name}, Edad: ${p.age}, Email: ${p.email}, Rol: ${p.rol}` })
+        res.status(201).send(userList)
+    } catch (error) {
+        console.log(error.message)
+        res.status(404).send("error al obtener usuarios")
+    }
+
+}
+
+export const deleteController = async (req, res) => {
+    try {
+        const users = await usersModel.find().lean()
+        let now = new Date();
+        let Tlimit = 1000 * 60 * 60 * 24 * 2
+        let aux = now.getTime() - Tlimit
+        let limit = new Date(aux)
+
+        let LastUsers = users.filter(aux => (aux.last_connection < limit))
+        let userId = LastUsers.map(aux => { return { id: aux._id, email: aux.email } })
+        let user_delete = userId.forEach(p => { deleteEmail(p.email), deleteUser(p.id) })
+        res.status(201).send("Se han elimina los usuarios con más de 2 horas de inactividad")
+    } catch (error) {
+        console.log(error.message)
+        res.status(404).send("No se pueden eliminar los usuarios")
     }
 }

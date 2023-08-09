@@ -43,7 +43,7 @@ export const AddProductToCartController = async (req, res) => {
     try {
         await cartManager.addProductToCart(cid, pid);
         logger.info(`Producto ${pid} agregado al carrito ${cid}`)
-        res.status(201).send(`Producto ${pid} agregado al carrito ${cid}`);
+        res.redirect("/products");
     } catch (error) {
         logger.error(`No se pudo agregar producto al carrito`)
         res.status(404).send("No se pudo agregar producto al carrito")
@@ -54,7 +54,8 @@ export const DeleteProductFromCartController = async (req, res) => {
     try {
         const { cid, pid } = req.params;
         await cartManager.deletProdfromCart(cid, pid);
-        res.send({ status: "success", payload: "Se elimino el producto del carrito" })
+        logger.info("Se elimino el producto del carrito")
+        res.redirect("/profile")
     } catch (err) {
         res.send({ status: "failed", payload: "No se pudo eliminar el producto del carrito" })
     }

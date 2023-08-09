@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { options } from "./options.js";
 
-const transporter = nodemailer.createTransport({
+export const transporter = nodemailer.createTransport({
     service: "gmail",
     port: 587,
     auth: {
@@ -15,7 +15,8 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendRecoveryPass = async (userEmail, token) => {
-    const link = `http://localhost:8080/forgot?token=${token}`;
+    const link = `api/forgot?token=${token}`;
+    // const link = `http://localhost:8080/forgot?token=${token}`;
 
     await transporter.sendMail({
         from: options.email.admin,
