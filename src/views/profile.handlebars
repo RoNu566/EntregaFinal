@@ -55,4 +55,15 @@
     <form method="post" action="/api/session/logout">
         <button type="submit" class="btn btn-outline-dark">Cerrar sesion</button>
     </form>
+
+{{#ifCond data.rol '==' "user"}}
+<a href="/premiumuser"><button type="submit" class="btn btn-outline-dark">Quiero ser Premium!</button></a>
+{{/ifCond}}
+{{#ifCond data.rol '==' "premium"}}
+<a href="/createproduct"><button type="submit" class="btn btn-outline-dark">Añadir mi Producto!</button></a>
+{{/ifCond}}
+{{#ifCond data.rol '==' "admin"}}
+<a href="/createproduct"><button type="submit" class="btn btn-outline-dark">Añadir mi Producto!</button></a>
+<a href="/deleteproduct"><button type="submit" class="btn btn-outline-dark">Eliminar un Producto</button></a>
+{{/ifCond}}
 </div>

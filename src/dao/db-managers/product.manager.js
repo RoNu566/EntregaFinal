@@ -8,13 +8,12 @@ class ProductManager {
   }
 
 
-  async getProducts(limit, page, sort) {
+  async getProducts(limit, page) {
     let limitIn = limit ? limit : 4;
     let pageIn = page ? page : 1;
-    let sortIn = sort ? { price: sort } : null;
-    let Params = { limit: limitIn, page: pageIn, sort: sortIn, lean: true }
+    let Params = { limit: limitIn, page: pageIn, lean: true }
     try {
-      const products = await productModel.paginate({}, Params)
+      const products = await productModel.paginate({}, { limit: limitIn, page: pageIn, lean: true })
       return products;
     } catch (error) {
       return [];
@@ -50,7 +49,7 @@ class ProductManager {
 
   async deleteProduct(id) {
     try {
-      const result = await productModel.deleteOne({ _id: id });
+      const result = await productModel.findByIdAndDelete(id)
       return result
     } catch (Error) {
       console.log("No se ha podido eliminar el producto")

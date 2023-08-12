@@ -17,7 +17,7 @@ cartRouter.post("/", CreateCartController);
 cartRouter.get("/:cid", GetCartByIdController);
 
 //Ruta para agregar producto al Carritos//
-cartRouter.post("/:cid/product/:pid", verifyRole(["user"]), AddProductToCartController);
+cartRouter.post("/:cid/product/:pid", verifyRole(["user", "premium"]), AddProductToCartController);
 
 //Ruta compra sin carritp//
 cartRouter.post("/sincarrito", LoginViewController);//me envia al login

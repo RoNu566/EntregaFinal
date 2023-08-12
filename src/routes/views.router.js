@@ -1,5 +1,5 @@
 import { json, Router } from "express";
-import { HomeViewController, RealTimeProdController, ProductViewController, ChatController, LoginViewController, ProfileViewController, SignInViewController, ForgotViewController, loggerViewController, resendPassViewController, purchasConfirmedController } from "../controllers/views.controller.js";
+import { HomeViewController, RealTimeProdController, ProductViewController, ChatController, LoginViewController, ProfileViewController, SignInViewController, ForgotViewController, loggerViewController, resendPassViewController, purchasConfirmedController, premiumuserController, createproductController, deleteproductController } from "../controllers/views.controller.js";
 import { verifyRole } from "../middlewares/auth.roles.js";
 import compression from "express-compression";
 
@@ -36,5 +36,15 @@ viewsRouter.get("/resendpass", resendPassViewController);
 
 //Ruta a view de compra
 viewsRouter.get("/purchase_confirmed", purchasConfirmedController)
+
+//Ruta a view de user premium
+viewsRouter.get("/premiumuser", premiumuserController)
+
+//Ruta a view de crear producto
+viewsRouter.get("/createproduct", verifyRole(["admin", "premium"]), createproductController)
+
+//Ruta a view de eliminar un producto
+viewsRouter.get("/deleteproduct", verifyRole(["admin"]), deleteproductController)
+
 
 export default viewsRouter;

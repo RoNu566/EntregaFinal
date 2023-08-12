@@ -4,6 +4,7 @@
 </div>
     <div class="tarjetas">
         {{#each products.docs}}
+            {{#ifCond stock '>' 0}}
             <div class="card-body">
                 <img src={{thumbnail}} class="card-img-top" alt={{description}}>
                 <div class="card-body">
@@ -25,6 +26,7 @@
                 </form>
                 {{/if}}
             </div>
+            {{/ifCond}}
         {{/each}}
     </div>
     <div>

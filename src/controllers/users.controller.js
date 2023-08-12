@@ -31,6 +31,7 @@ export const DocumentController = async (req, res) => {
         const userId = req.params.uid
         const user = await usersModel.findById(userId)
         if (user) {
+            const docs = []
             const identificacion = req.files['identificacion']?.[0] || null;
             const domicilio = req.files['domicilio']?.[0] || null;
             const estadoDeCuenta = req.files['estadoDeCuenta']?.[0] || null;
@@ -45,16 +46,17 @@ export const DocumentController = async (req, res) => {
             }
             if (docs.length == 3) { // tengo los 3 docs?
                 user.status = "completo"
+                user.rol = "premium"
             } else {
                 user.status = "incompleto"
             }
             user.documents = docs;
-            const userUpdate = await usersModel.findByIdAndUpdate(user._id, user)
+            await usersModel.findByIdAndUpdate(user._id, user)
             res.json({ status: "success", message: "se actualizaron los documentos" })
         } else {
             res.status(404).send("usuario inexistente")
         }
-    } catch {
+    } catch (error) {
         console.log(error.message)
         res.status(404).send("error al cargar los documentos")
     }

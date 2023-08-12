@@ -73,3 +73,17 @@ export const resendPassViewController = async (req, res) => {
 export const purchasConfirmedController = async (req, res) => {
     res.render("purchaseconfirmed")
 }
+
+export const premiumuserController = async (req, res) => {
+    const data = req.session
+    res.render("premiumuser", { data, section: "form" })
+}
+
+export const createproductController = async (req, res) => {
+    const data = req.session
+    res.render("createproduct", { data, section: "createproduct" })
+}
+
+export const deleteproductController = async (req, res) => {
+    res.render("deleteproduct", { section: "deleteproduct" })
+}

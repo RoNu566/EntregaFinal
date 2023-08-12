@@ -180,3 +180,107 @@
   background-size: cover;
  }
 
+  /* // Forms // */
+
+ #form{
+  background-image: url("../img/formbg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100svh;
+ }
+
+ #form .form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 20px 10px 20px;
+  background-color: rgba(255, 228, 196, 0.477);
+  border-radius: 1rem;
+ }
+
+ .form h1{
+  margin-top: 30px;
+ }
+
+ .form_inputs{
+  margin: 10px 5px 10px 5px;
+  padding: 10px;
+
+ }
+
+ .form form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px 25px 0px;
+ }
+
+ .form input{
+  border-radius: 0.5rem;
+  padding: 5px;
+ }
+
+  /* // Create Product // */
+
+#createproduct{
+  background-image: url("../img/formbg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100svh;
+}
+
+.createProduct{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 20px 10px 20px;
+  background-color: rgba(255, 228, 196, 0.477);
+  border-radius: 1rem;
+}
+
+.createProduct form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px 25px 0px;
+ }
+
+ 
+  /* // Delete Product // */
+
+ #deleteproduct{
+  background-image: url("../img/formbg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100svh;
+ }
+
+ .delete_form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 20px 10px 20px;
+  background-color: rgba(255, 228, 196, 0.477);
+  border-radius: 1rem;
+
+ }
+
+ .delete_form_inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px 25px 0px;
+
+ }

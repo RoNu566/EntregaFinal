@@ -77,7 +77,7 @@ const documentStorage = multer.diskStorage({
     },
     //nombre del archivo//
     filename: function (req, file, cb) {
-        cb(null, `${req.user.email}-documento-${file.originalname}`)
+        cb(null, `${req.session.email}-documento-${file.originalname}`)
     }
 });
 //crear uploader de documentos//

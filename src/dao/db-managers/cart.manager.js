@@ -1,6 +1,5 @@
 import cartModel from "../models/cart.models.js"
 import productModel from "../models/products.models.js";
-
 import { Logger2 } from "../../Logger/logger.js";
 import { ProductManager } from "../../config/persistance.js";
 

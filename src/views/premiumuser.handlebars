@@ -1,0 +1,15 @@
+<div class="form">
+    <h1>Completa la siguiente información para ser un usuario premium!</h1>
+    <p>Hola {{data.user}}. Es improtante que completes el formulario</p>
+    <div class="form_inputs">
+        <form method="post" action="/api/users/{{data._id}}/documents" enctype="multipart/form-data"><br>
+        <label for="file">Archivo de Identificación</label><br>
+        <input type="file" name="identificacion"/><br>
+        <label for="file">Archivo domicilio</label><br>
+        <input type="file" name="domicilio"/><br>
+        <label for="file">Archivo de estado de cuenta</label><br>
+        <input type="file" name="estadoDeCuenta"/><br>
+        <button type="submit">Cargar información</button>
+        </form>
+    </div>
+</div>

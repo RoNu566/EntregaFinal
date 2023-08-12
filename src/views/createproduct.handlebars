@@ -1,0 +1,17 @@
+<div class="createProduct">
+    <h1>Bienvenido {{data.user}}</h1>
+    <p>Por ser premium, puedes publicar tus propios productos!</p>
+    <div class="product_form">
+        <form method="post" action="/api/products" enctype="multipart/form-data">
+        <input type="text" placeholder="title" name="title"/><br>
+        <input type="text" placeholder="description" name="description"/><br>
+        <input type="number" placeholder="price" name="price"/><br>
+        <input type="file" placeholder="imagen" name="thumbnail"/><br>
+        <input type="number" placeholder="code" name="code"/><br>
+        <input type="number" placeholder="stock" name="stock"/><br>
+        <input type="text" placeholder="category" name="category"/><br>
+        <input type="bolean" placeholder="status" name="status"/><br>
+        <button type="submit">Añadir mi Producto</button>
+        </form>
+    </div>
+</div>
