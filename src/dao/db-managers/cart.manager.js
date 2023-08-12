@@ -79,6 +79,15 @@ class CartManager {
       throw new Error("no se pudo eliminar el producto");
     }
   }
+
+  async emptycart(cid) {
+    try {
+      const cart = await cartModel.findOneAndReplace({ _id: cid }, [])
+      cart.save()
+    } catch (error) {
+      throw new Error;
+    }
+  }
 };
 
 export default CartManager;

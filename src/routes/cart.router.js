@@ -1,5 +1,5 @@
 import { Router, json } from "express";
-import { GetCartController, CreateCartController, GetCartByIdController, AddProductToCartController, DeleteProductFromCartController, DeleteCartController, Purchase } from "../controllers/cart.controller.js";
+import { GetCartController, CreateCartController, GetCartByIdController, AddProductToCartController, DeleteProductFromCartController, DeleteCartController, Purchase, emptycartController } from "../controllers/cart.controller.js";
 import { verifyRole } from "../middlewares/auth.roles.js";
 import { LoginViewController } from "../controllers/views.controller.js";
 import compression from "express-compression";
@@ -33,5 +33,8 @@ cartRouter.delete("/:cid", DeleteCartController)
 
 //Ruta para confirmar la compra//
 cartRouter.post("/:cid/purchase", Purchase);
+
+//Ruta para vaciar el carrito//
+cartRouter.post("/:cid/emptycart", emptycartController)
 
 export default cartRouter;

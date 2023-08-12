@@ -106,3 +106,15 @@ export const Purchase = async (req, res) => {
         res.send({ status: "Error", payload: "No se pudo realizar la compra" })
     }
 }
+
+export const emptycartController = async (req, res) => {
+    try {
+        const cartId = req.params.cid;
+        cartManager.emptycart(cartId);
+        logger.info("Se ha vaciado el carrito")
+        res.redirect("/profile")
+    } catch (error) {
+        logger.error("No se pudo vaciar el carrito")
+        res.status(404).send("No se pudo vaciar el carrito")
+    }
+}

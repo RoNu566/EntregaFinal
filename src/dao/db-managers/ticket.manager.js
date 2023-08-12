@@ -7,7 +7,7 @@ class TicketManager {
     async newTicket(arr, email) {
         try {
             const amount = arr.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0)
-            const datetime = new Date().toLocaleString();
+            const datetime = new Date().toISOString();
             const purchaser = email
             const code = uuidv4()
             const newTicket = {
