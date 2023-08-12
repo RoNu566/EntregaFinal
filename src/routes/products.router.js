@@ -23,7 +23,7 @@ productsRouter.put("/:pid", verifyRole(["admin"]), UpdateProductController)
 productsRouter.delete("/:pid", verifyRole(["admin", "premium"]), DeleteProductByIdController)
 
 //Ruta para eliminar productos por id con formulario//
-productsRouter.post("/delete", DeletProductbyformController)
+productsRouter.post("/delete", verifyRole(["admin"]), DeletProductbyformController)
 
 export default productsRouter;
 
