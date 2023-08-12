@@ -1,4 +1,10 @@
 import cartModel from "../models/cart.models.js"
+import productModel from "../models/products.models.js";
+
+import { Logger2 } from "../../Logger/logger.js";
+import { ProductManager } from "../../config/persistance.js";
+
+
 
 class CartManager {
 
@@ -88,6 +94,54 @@ class CartManager {
       throw new Error;
     }
   }
-};
+
+  async purchase(cid) {
+    const ticketProducts = [];
+    const rejectedProducts = [];
+    try {
+      const cartToPurchase = await cartModel.findById(cid)
+      if (!cartToPurchase) {
+        return ("Carrito inexistente")
+      } else {
+        if (!cartToPurchase.products.length) {
+          return ("No hay productos en el carrito")
+        }
+        for (let i = 0; i < cartToPurchase.products.length; i++) {
+          const cartProduct = cartToPurchase.products[i];
+          const productDB = await productModel.findById(cartProduct.product._id);
+          //comparar la cantidad de ese producto en el carrito con el stock del producto
+          if (cartProduct.quantity <= productDB.stock) {
+            ticketProducts.push(cartProduct);
+            this.sellStock(ticketProducts)
+          } else {
+            const qty = productDB.stock
+            cartProduct.quantity = qty
+            ticketProducts.push(cartProduct)
+            this.sellStock(ticketProducts)
+          }
+        }
+        this.emptycart(cid)
+        return (ticketProducts)
+      }
+    } catch (error) {
+      throw new Error
+    }
+  };
+
+  async sellStock(p) {
+    const stockReduce = p
+    const newmanager = new ProductManager()
+    try {
+      stockReduce.forEach((prod) => {
+        const reducedId = prod.product._id.toString()
+        const reducedQty = prod.quantity;
+        newmanager.reduceStock(reducedId, reducedQty)
+      })
+    } catch (error) {
+      return ("no se pudo confirmar la compra")
+    }
+  };
+
+}
 
 export default CartManager;

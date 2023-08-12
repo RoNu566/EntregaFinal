@@ -1,8 +1,9 @@
 import { manager } from "../controllers/products.controller.js"
 import ChatManager from "../dao/db-managers/chat.manager.js";
-import productModel from "../dao/models/products.models.js";
-import { Logger2 } from "../Logger/logger.js";
 import { cartManager } from "./cart.controller.js";
+import { Logger2 } from "../Logger/logger.js";
+
+
 
 const chatManager = new ChatManager;
 const logger = Logger2()
@@ -19,8 +20,8 @@ export const RealTimeProdController = async (req, res) => {
 
 export const ProductViewController = async (req, res) => {
     const data = req.session
-    const { page } = req.query;
-    const products = await productModel.paginate({}, { limit: 4, lean: true, page: page ?? 1 })
+    const { limit, page } = req.query;
+    const products = await manager.getProducts(limit, page)
     res.render("products", { products, data, section: "products" })
 }
 
@@ -67,4 +68,8 @@ export const loggerViewController = async (req, res) => {
 
 export const resendPassViewController = async (req, res) => {
     res.render("resendpass")
+}
+
+export const purchasConfirmedController = async (req, res) => {
+    res.render("purchaseconfirmed")
 }

@@ -1,5 +1,5 @@
 import productModel from "../models/products.models.js";
-import cartModel from "../models/cart.models.js";
+
 
 class ProductManager {
 
@@ -9,10 +9,9 @@ class ProductManager {
 
 
   async getProducts(limit, page, sort) {
-    let limitIn = limit ? limit : 10;
+    let limitIn = limit ? limit : 4;
     let pageIn = page ? page : 1;
     let sortIn = sort ? { price: sort } : null;
-
     let Params = { limit: limitIn, page: pageIn, sort: sortIn, lean: true }
     try {
       const products = await productModel.paginate({}, Params)

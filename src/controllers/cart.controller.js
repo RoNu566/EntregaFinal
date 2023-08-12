@@ -1,12 +1,14 @@
 import { CartManager } from "../config/persistance.js"
-import { manager } from "../controllers/products.controller.js"
 import TicketManager from "../dao/db-managers/ticket.manager.js";
 import { CartNotFoundErrorFunction } from "../services/errorFunction.js";
 import { Logger2 } from "../Logger/logger.js";
+import { purchaseEmail } from "../services/users.service.js";
+
 
 export const cartManager = new CartManager();
-const ticketManager = new TicketManager();
-const logger = Logger2()
+export const ticketManager = new TicketManager();
+const logger = Logger2();
+
 
 export const GetCartController = async (req, res) => {
     try {
@@ -72,35 +74,14 @@ export const DeleteCartController = async (req, res) => {
 
 }
 
-export const Purchase = async (req, res) => {
+export const PurchaseController = async (req, res) => {
     try {
         const cartId = req.params.cid;
-        const cart = await cartManager.checkCart(cartId);
-        const ticketProducts = [];
-        const rejectedProducts = [];
-        if (!cart) {
-            res.send("No existe el carrito, por favor genere su carrito primero")
-        } else {
-            if (!cart.products.length) {
-                return res.send("es necesario que agrege productos antes de realizar la compra")
-            } else {
-                for (let i = 0; i < cart.products.length; i++) {
-                    const cartProduct = cart.products[i];
-                    const productDB = await manager.getProductById(cartProduct.product._id);
-                    //comparar la cantidad de ese producto en el carrito con el stock del producto
-                    if (cartProduct.quantity <= productDB.stock) {
-                        ticketProducts.push(cartProduct);
-                    } else {
-                        rejectedProducts.push(cartProduct);
-                    }
-                }
-                console.log("ticketProducts", ticketProducts)
-            }
-            const NewTicket = await ticketManager.newTicket(ticketProducts, req.session.email.toString())
-            logger.info(`Ticket Final: ${NewTicket}`)
-            // console.log("ticketfinal", NewTicket)
-            res.send(NewTicket)
-        }
+        const cartPurchase = await cartManager.purchase(cartId)
+        const NewTicket = await ticketManager.newTicket(cartPurchase, req.session.email.toString())
+        logger.info(`Ticket Final: ${NewTicket}`)
+        purchaseEmail(NewTicket, req.session.email.toString())
+        res.redirect("/purchase_confirmed")
     } catch (err) {
         logger.info(`No se pudo realizar la compra`)
         res.send({ status: "Error", payload: "No se pudo realizar la compra" })

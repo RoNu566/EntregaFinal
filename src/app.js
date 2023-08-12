@@ -8,8 +8,15 @@ import express from "express";
 import { json, urlencoded } from "express";
 import { engine } from "express-handlebars";
 import passport from "passport";
-import { initializedPassport } from "./config/passport.config.js";
 import swaggerUi from "swagger-ui-express"
+
+//Propios//
+import { __dirname } from "./utils.js";
+import { options } from "./config/options.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { addLogger } from "./Logger/logger.js";
+import { swaggerSpecs } from "./config/docConfig.js";
+import { initializedPassport } from "./config/passport.config.js";
 
 //Routers//
 import productsRouter from "./routes/products.router.js";
@@ -18,16 +25,6 @@ import viewsRouter from "./routes/views.router.js"
 import ChatManager from "./dao/db-managers/chat.manager.js";
 import authRouter from "./routes/auth.router.js";
 import usersRouter from "./routes/users.router.js";
-
-//Propios//
-import { __dirname } from "./utils.js";
-import { options } from "./config/options.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
-import { addLogger } from "./Logger/logger.js";
-import { swaggerSpecs } from "./config/docConfig.js";
-
-
-
 
 
 const app = express();

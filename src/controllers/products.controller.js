@@ -1,10 +1,12 @@
 import { ProductManager } from "../config/persistance.js"
+import { __dirname } from "../utils.js";
 import { ProductErrorFunction } from "../services/errorFunction.js";
-import { Logger2 } from "../Logger/logger.js";
-import productModel from "../dao/models/products.models.js";
+import { Logger2 } from "../Logger/logger.js"
 
-const manager = new ProductManager();
+
 const logger = Logger2()
+const manager = new ProductManager();
+
 export const GetProductsController = async (req, res) => {
     try {
         const { limit, page, sort } = req.params;
@@ -83,4 +85,4 @@ export const DeleteProductByIdController = async (req, res) => {
     }
 }
 
-export { manager };
+export { manager }
