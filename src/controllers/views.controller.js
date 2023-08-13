@@ -48,7 +48,7 @@ export const ProfileViewController = async (req, res) => {
 }
 
 export const SignInViewController = async (req, res) => {
-    res.render("signIn")
+    res.render("signIn", { section: "signIn" })
 }
 
 export const ForgotViewController = async (req, res) => {
@@ -87,3 +87,8 @@ export const createproductController = async (req, res) => {
 export const deleteproductController = async (req, res) => {
     res.render("deleteproduct", { section: "deleteproduct" })
 }
+
+export const confirmedcreationController = async (req, res) => {
+    res.render("confirmedcreation", { section: "confirmedcreation" })
+}
+

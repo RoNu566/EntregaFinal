@@ -44,7 +44,8 @@ export const AddProductController = async (req, res) => {
 
         const result = await manager.addProduct(title, description, price, thumbnail, code, stock, category, status, owner);
         req.io.emit("new-product", result);
-        res.status(201).send("Producto agregado!!");
+        logger.info("Producto agregado!!")
+        res.render("/confirmedcreation");
     } catch (e) {
         logger.error(`No se pudo agregar el producto`)
         res.status(404).send(`No se pudo agregar el producto`);
